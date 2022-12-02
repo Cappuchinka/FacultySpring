@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактирование дисциплины</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+  <h1>Изменить покупателя</h1>
+  <form method="post">
+    <input type="text" name="subjectName" th:value="${subjectName}" required th:pattern="${namePattern}" placeholder="Введите название дисциплины" class="form-control"><br>
+    <button type="submit" class="btn btn-success">Обновить</button>
+  </form>
+
+</div>
+
+<footer th:insert="blocks/footer :: footer" ></footer>
+
+</body>
+</html>
