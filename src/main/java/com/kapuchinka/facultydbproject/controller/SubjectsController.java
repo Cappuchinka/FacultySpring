@@ -5,6 +5,7 @@ import com.kapuchinka.facultydbproject.entity.Subject;
 import com.kapuchinka.facultydbproject.repositories.SubjectRepository;
 import com.kapuchinka.facultydbproject.utils.StringPatterns;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class SubjectsController {
 
     @GetMapping("/subjects")
     public String subjects(Model model) {
-        List<Subject> subjects = subjectRepository.findAll();
+        List<Subject> subjects = subjectRepository.findAll(Sort.by(Sort.Order.by("subjectId")));
 
         model.addAttribute("subjects", subjects);
         return "subjects/subjects";

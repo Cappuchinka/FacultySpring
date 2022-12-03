@@ -8,6 +8,7 @@ import com.kapuchinka.facultydbproject.repositories.TeacherRepository;
 import com.kapuchinka.facultydbproject.service.TeacherService;
 import com.kapuchinka.facultydbproject.utils.StringPatterns;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +30,8 @@ public class TeacherController {
 
     @GetMapping("/teachers")
     public String teachers(Model model) {
-        List<Teacher> teachers = teacherRepository.findAll();
-        List<Subject> subjects = subjectRepository.findAll();
+        List<Teacher> teachers = teacherRepository.findAll(Sort.by(Sort.Order.by("teacherId")));
+        List<Subject> subjects = subjectRepository.findAll(Sort.by(Sort.Order.by("subjectId")));
         List<TeacherDto> teachersDtos = teacherService.getTeachers(teachers, subjects);
         model.addAttribute("teachersDtos", teachersDtos);
         model.addAttribute("teachers", teachers);
@@ -68,7 +69,7 @@ public class TeacherController {
             return "redirect:/teachers";
         }
         Teacher teacher = teacherRepository.findById(id).orElseThrow();
-        System.out.println(teacher.getSubjectId() + " " + teacher.getFirstName() + " " + teacher.getLastName());
+        System.out.println(teacher.getTeacherId() + " " + teacher.getFirstName() + " " + teacher.getLastName());
         teacher.setFirstName(firstName);
         teacher.setLastName(lastName);
         teacherRepository.save(teacher);
@@ -92,7 +93,7 @@ public class TeacherController {
         Teacher teacher = new Teacher();
         teacher.setFirstName(firstName);
         teacher.setLastName(lastName);
-        teacher.setSubjectId((short) (Math.random() * subjectRepository.findAll().size()));
+        teacher.setSubjectId((short) (Math.random() * subjectRepository.findAll().size() + 1));
         
         teacherRepository.save(teacher);
 

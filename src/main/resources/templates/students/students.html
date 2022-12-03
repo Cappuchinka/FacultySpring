@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Students</title>
+    <title>Студенты факультета</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 </head>
@@ -9,16 +9,15 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-<!--    <h1>Список фильмов</h1>-->
-<!--    <a th:href="'/movie/add'" class="btn btn-warning">Добавить новый фильм</a>-->
-<!--    <div th:each="el : ${movies}" class="alert alert-info mt-2">-->
-<!--        <h1 th:text="${el.getMovieName().toUpperCase()}"/>-->
-<!--        <h3 th:text="${format.format(el.getYear())}"/>-->
-<!--        <a th:href="'/movie/' + ${el.getId()} + '/edit'" class="btn btn-warning">Изменить</a>-->
-<!--        <form th:action="'/movie/' + ${el.getId()} + '/remove'" method="post">-->
-<!--            <button class="btn btn-warning" type="submit">Удалить</button>-->
-<!--        </form>-->
-<!--    </div>-->
+    <h1>Список студентов</h1>
+    <a th:href="'/students/add'" class="btn btn-warning">Добавить нового студента</a>
+    <div th:each="el : ${studentDtos}" class="alert alert-info mt-2">
+        <h3 th:text="${el.getFirstName()} + ' ' + ${el.getLastName} + ': ' + ${el.getGroupNum()} + '_' + ${el.getGroupYear()}"/>
+        <a th:href="'/students/' + ${students[studentDtos.indexOf(el)].getStudentId()} + '/edit'" class="btn btn-warning">Изменить</a>
+        <form th:action="'/students/' + ${students[studentDtos.indexOf(el)].getStudentId()} + '/remove'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
+    </div>
 </div>
 
 <footer th:insert="blocks/footer :: footer" ></footer>

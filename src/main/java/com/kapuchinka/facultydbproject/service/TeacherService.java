@@ -36,12 +36,12 @@ public class TeacherService {
 
     public List<TeacherDto> getTeachers(List<Teacher> teachers, List<Subject> subjects) {
         int subjectId;
-        List<TeacherDto> teacherDtos = new ArrayList<>();
-        for (int i = 0; i < teachers.size(); i++) {
+        List<TeacherDto> teacherDtos = new ArrayList<>(teachers.size());
+        for (Teacher teacher : teachers) {
             TeacherDto teacherDto = new TeacherDto();
-            teacherDto.setLastName(teachers.get(i).getLastName());
-            teacherDto.setFirstName(teachers.get(i).getFirstName());
-            subjectId = teachers.get(i).getSubjectId();
+            teacherDto.setLastName(teacher.getLastName());
+            teacherDto.setFirstName(teacher.getFirstName());
+            subjectId = teacher.getSubjectId();
             teacherDto.setSubjectName(findSubjectName(subjects, subjectId));
             teacherDtos.add(teacherDto);
         }
