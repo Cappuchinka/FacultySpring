@@ -11,13 +11,53 @@
 <div class="container mt-5">
     <h1>Список дисциплин</h1>
     <a th:href="'/subjects/add'" class="btn btn-warning">Добавить новую дисциплину</a>
-    <div th:each="el : ${subjects}" class="alert alert-info mt-2">
-        <h3 th:text="${el.getSubjectName()}"/>
-        <a th:href="'/subjects/' + ${el.getSubjectId()} + '/edit'" class="btn btn-warning">Изменить</a>
-        <form th:action="'/subjects/' + ${el.getSubjectId()} + '/remove'" method="post">
-            <button class="btn btn-warning" type="submit">Удалить</button>
+    <h1 th:text="'Количество записей: ' + ${count}"></h1>
+
+    <form th:action="'/subjects'" method="post">
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" name="nameFilter" th:value="${nameFilter}" th:pattern="${namePattern}" placeholder="Поиск по названию" />
+            <button class="btn btn-primary" id="advanced-search-button" type="submit">
+                <i class="fa fa-search"></i>
+                Поиск
+            </button>
+        </div>
+    </form>
+
+    <div id="datatable"></div>
+
+    <div th:each="el : ${subjectDtos}" class="alert alert-info mt-2">
+        <h3 th:text="${el.subjectName}"/>
+        <form th:action="'/subjects/' + ${el.subjectId} + '/remove'" method="post">
+            <a th:href="'/subjects/' + ${el.subjectId} + '/edit'" class="btn btn-warning">Изменить</a>
+            <form th:action="'/subjects/' + ${el.subjectId} + '/remove'" method="post">
+                <button class="btn btn-warning" type="submit">Удалить</button>
+            </form>
         </form>
     </div>
+
+    <nav aria-label="...">
+        <ul class="pagination">
+            <div th:if="${subjectDtos.totalPages > 0}" class="pagination"
+                 th:each="pageNumber : ${pageNumbers}">
+                <li class="page-item">
+                    <a class="page-link"
+                       th:if="${pageNumber != subjectDtos.getNumber()}"
+                       th:href="@{/subjects(limit=${subjectDtos.size}, offset=${pageNumber} - 1)}"
+                       th:text="${pageNumber}"
+                       th:class="${pageNumber==subjectDtos.number + 1} ? active">
+
+                    </a>
+
+                    <a class="page-link"
+                       th:unless="${pageNumber != subjectDtos.getNumber()}"
+                       th:text="${pageNumber}"
+                       th:class="${pageNumber==subjectDtos.number + 1} ? active">
+
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </nav>
 </div>
 
 <footer th:insert="blocks/footer :: footer" ></footer>

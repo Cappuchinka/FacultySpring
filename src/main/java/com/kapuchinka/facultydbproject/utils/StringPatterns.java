@@ -10,6 +10,8 @@ public class StringPatterns {
 
     private static final String DATE_PATTERN = "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])";
 
+    private static final String NUMBER_PATTERN = "[0-9]+";
+
     private static boolean isValid(String regex, String str){
         Pattern p = Pattern.compile(regex);
         if (str == null) {
@@ -29,6 +31,8 @@ public class StringPatterns {
 
     public static boolean isValidDate(String date) {return isValid(DATE_PATTERN, date);}
 
+    public static boolean isValidNumbers(String numbers) {return isValid(NUMBER_PATTERN, numbers);}
+
     public static String getNamePattern(){
         return NAME_PATTERN;
     }
@@ -38,4 +42,6 @@ public class StringPatterns {
     }
 
     public static String getDatePattern(){return DATE_PATTERN;}
+
+    public static String getNumberPattern() {return NUMBER_PATTERN;}
 }

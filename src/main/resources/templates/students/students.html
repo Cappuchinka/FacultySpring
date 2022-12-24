@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Студенты факультета</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,13 +11,54 @@
 <div class="container mt-5">
     <h1>Список студентов</h1>
     <a th:href="'/students/add'" class="btn btn-warning">Добавить нового студента</a>
-    <div th:each="el : ${studentDtos}" class="alert alert-info mt-2">
-        <h3 th:text="${el.getFirstName()} + ' ' + ${el.getLastName} + ': ' + ${el.getGroupNum()} + '_' + ${el.getGroupYear()}"/>
-        <a th:href="'/students/' + ${students[studentDtos.indexOf(el)].getStudentId()} + '/edit'" class="btn btn-warning">Изменить</a>
-        <form th:action="'/students/' + ${students[studentDtos.indexOf(el)].getStudentId()} + '/remove'" method="post">
-            <button class="btn btn-warning" type="submit">Удалить</button>
+    <h1 th:text="'Количество записей: ' + ${count}"></h1>
+
+    <form th:action="'/students'" method="post">
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" name="firstNameFilter" th:value="${firstNameFilter}" th:pattern="${namePattern}" placeholder="Поиск по имени" />
+            <input type="text" class="form-control" name="lastNameFilter" th:value="${lastNameFilter}" th:pattern="${namePattern}" placeholder="Поиск по фамилии" />
+            <button class="btn btn-primary" id="advanced-search-button" type="submit">
+                <i class="fa fa-search"></i>
+                Поиск
+            </button>
+        </div>
+    </form>
+
+    <div id="datatable"></div>
+
+    <div th:each="el : ${students}" class="alert alert-info mt-2">
+        <h3 th:text="${el.firstName} + ' ' + ${el.lastName} + ': ' + ${el.groupNum} + '_' + ${el.groupYear}"/>
+        <form th:action="'/students/' + ${el.studentId} + '/remove'" method="post">
+            <a th:href="'/students/' + ${el.studentId} + '/edit'" class="btn btn-warning">Изменить</a>
+            <form th:action="'/students/' + ${el.studentId} + '/remove'" method="post">
+                <button class="btn btn-warning" type="submit">Удалить</button>
+            </form>
         </form>
     </div>
+
+    <nav aria-label="...">
+        <ul class="pagination">
+            <div th:if="${students.totalPages > 0}" class="pagination"
+                 th:each="pageNumber : ${pageNumbers}">
+                <li class="page-item">
+                    <a class="page-link"
+                       th:if="${pageNumber != students.getNumber()}"
+                       th:href="@{/students(limit=${students.size}, offset=${pageNumber} - 1)}"
+                       th:text="${pageNumber}"
+                       th:class="${pageNumber==students.number + 1} ? active">
+
+                    </a>
+
+                    <a class="page-link"
+                       th:unless="${pageNumber != students.getNumber()}"
+                       th:text="${pageNumber}"
+                       th:class="${pageNumber==students.number + 1} ? active">
+
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </nav>
 </div>
 
 <footer th:insert="blocks/footer :: footer" ></footer>

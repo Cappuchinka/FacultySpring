@@ -1,10 +1,8 @@
 package com.kapuchinka.facultydbproject.entity;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 
@@ -13,10 +11,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Setter
 @Getter
-@Table(name = "teacher")
-public class Teacher {
+@Immutable
+public class TeacherSubjectView {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="row_number")
+    private Short rowNumber;
+    @NotNull
     @Column(name="teacher_id")
     public Short teacherId;
     @NotNull
@@ -25,4 +25,7 @@ public class Teacher {
     @NotNull
     @Column(name="last_name")
     public String lastName;
+    @NotNull
+    @Column(name = "subject_name")
+    public String subjectName;
 }

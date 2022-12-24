@@ -13,6 +13,10 @@
   <form action="/students/add" method="post">
     <input type="text" name="firstName" required th:pattern="${firstName}" placeholder="Введите имя" class="form-control"><br>
     <input type="text" name="lastName" required th:pattern="${lastName}" placeholder="Введите фамилию" class="form-control"><br>
+    <input type="text" name="groupId" required th:pattern="${groupId}" placeholder="Введите ID группы" class="form-control"><br>
+    <div th:each="el : ${groupList}">
+      <h6 th:text="${el.groupId} + ': ' + ${el.groupNum} + '_' + ${el.groupSem} + '_' + ${el.groupYear}"/>
+    </div>
     <button type="submit" class="btn btn-success">Добавить</button>
   </form>
 </div>

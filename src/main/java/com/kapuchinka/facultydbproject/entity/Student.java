@@ -6,23 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
+@Table(name = "student")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short studentId;
+    public Short studentId;
     @NotNull
-    private String firstName;
+    public String firstName;
     @NotNull
-    private String lastName;
-    private Short groupId;
+    public String lastName;
+    public Short groupId;
 }

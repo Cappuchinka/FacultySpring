@@ -17,11 +17,11 @@ import javax.persistence.*;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short groupId;
+    public Short groupId;
     @NotNull
-    private Short groupYear;
+    public Short groupYear;
     @NotNull
-    private Short groupSem;
+    public Short groupSem;
     @NotNull
-    private Short groupNum;
+    public Short groupNum;
 }

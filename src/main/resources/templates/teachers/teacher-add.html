@@ -13,6 +13,14 @@
   <form action="/teachers/add" method="post">
     <input type="text" name="firstName" required th:pattern="${firstName}" placeholder="Введите имя" class="form-control"><br>
     <input type="text" name="lastName" required th:pattern="${lastName}" placeholder="Введите фамилию" class="form-control"><br>
+    <input type="text" name="subjectName" required th:pattern="${subjectName}" placeholder="Введите дисциплину" class="form-control"><br>
+    <div th:each="el : ${subjectsList}">
+      <h6 th:text="${el.subjectName}"/>
+    </div>
+<!--    <select th:name="*{subjectsList}">-->
+<!--      <option value="">Выберите дисциплину</option>-->
+<!--      <option name="subjectName" th:each="subjects : ${subjectsList}" th:value="${subjects}" th:id="${subjects.subjectId}" th:text="${subjects.subjectName}"/>-->
+<!--    </select>-->
     <button type="submit" class="btn btn-success">Добавить</button>
   </form>
 </div>

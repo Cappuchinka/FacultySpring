@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class GroupDto {
-    private Short groupYear;
-    private Short groupSem;
-    private Short groupNum;
+    public Short groupYear;
+    public Short groupSem;
+    public Short groupNum;
 }
