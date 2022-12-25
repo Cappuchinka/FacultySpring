@@ -60,11 +60,9 @@ public class TeacherSubjectController {
 
     @PostMapping("/teachers")
     public String teacherFilter(@RequestParam String firstNameFilter,
-                                @RequestParam String lastNameFilter,
-                                @RequestParam String subjectNameFilter, Model model){
+                                @RequestParam String lastNameFilter, Model model){
         filter.setFirstName(firstNameFilter);
         filter.setLastName(lastNameFilter);
-        filter.setSubjectName(subjectNameFilter);
         return "redirect:/teachers";
     }
 
