@@ -9,7 +9,7 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-    <h1>Список студентов</h1>
+    <h1>Список преподавателей</h1>
     <a th:href="'/teachers/add'" class="btn btn-warning">Добавить нового преподавателя</a>
     <h1 th:text="'Количество записей: ' + ${count}"></h1>
 
@@ -17,7 +17,6 @@
         <div class="input-group mb-4">
             <input type="text" class="form-control" name="firstNameFilter" th:value="${firstNameFilter}" th:pattern="${namePattern}" placeholder="Поиск по имени" />
             <input type="text" class="form-control" name="lastNameFilter" th:value="${lastNameFilter}" th:pattern="${namePattern}" placeholder="Поиск по фамилии" />
-            <input type="text" class="form-control" name="subjectNameFilter" th:value="${subjectNameFilter}" th:pattern="${namePattern}" placeholder="Поиск по дисциплине" />
             <button class="btn btn-primary" id="advanced-search-button" type="submit">
                 <i class="fa fa-search"></i>
                 Поиск

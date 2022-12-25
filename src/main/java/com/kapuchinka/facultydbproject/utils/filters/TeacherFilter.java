@@ -14,7 +14,6 @@ import java.util.stream.StreamSupport;
 public class TeacherFilter {
     private String firstName;
     private String lastName;
-
     private String subjectName;
 
     public TeacherFilter() {

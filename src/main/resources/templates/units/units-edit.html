@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Изменение юнита</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Изменить юнита</h1>
+    <form method="post">
+        <input type="number" name="teacherId" th:value="${teacherId}" required placeholder="Teacher ID" class="form-control"><br>
+        <input type="number" name="subjectId" th:value="${subjectId}" required placeholder="Subject ID" class="form-control"><br>
+        <input type="number" name="groupId" th:value="${groupId}" required placeholder="Group ID" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Обновить</button>
+    </form>
+
+</div>
+
+<footer th:insert="blocks/footer :: footer" ></footer>
+
+</body>
+</html>

@@ -50,8 +50,8 @@ public class TeacherSubjectController {
         model.addAttribute("lastNameFilter", filter.getLastName());
         model.addAttribute("subjectNameFilter", filter.getSubjectName());
 
-        String namePattern = StringPatterns.getTextPattern();
-        model.addAttribute("namePattern", namePattern);
+        String textPattern = StringPatterns.getTextPattern();
+        model.addAttribute("textPattern", textPattern);
         model.addAttribute("count", size);
         model.addAttribute("teachers", teachers);
 

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Units</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h1>Список юнитов</h1>
+    <a th:href="'/units/add'" class="btn btn-warning">Добавить юнита</a>
+    <div th:each="el : ${unitDtos}" class="alert alert-info mt-2">
+        <h1 th:text="${'Преподаватель: ' + el.teacherName}"/>
+        <h3 th:text=" ${'Дисциплина: ' + el.subjectName}"/>
+        <h3 th:text=" ${'Группа: ' + el.groupName}"/>
+
+        <a th:href="'/units/' + ${el.unitId} + '/edit'" class="btn btn-warning">Изменить</a>
+        <form th:action="'/units/' + ${el.unitId} + '/remove'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer" ></footer>
+
+</body>
+</html>

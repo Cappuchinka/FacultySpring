@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
@@ -17,8 +16,17 @@ import javax.persistence.*;
 public class Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short unitId;
+    public Short unitId;
     public Short groupId;
     public Short teacherId;
     public Short subjectId;
+
+    public Unit(Short groupId, Short teacherId, Short subjectId) {
+        this.groupId = groupId;
+        this.teacherId = teacherId;
+        this.subjectId = subjectId;
+    }
+
+    public Unit() {
+    }
 }
